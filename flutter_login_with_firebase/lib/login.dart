@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'authentication_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -86,6 +88,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       "password": _passwordController.text
                     });
                     if (_loginFormKey.currentState!.validate()) {
+                      context.read<AuthenticationServie>().signin(
+                          _usernameController.text, _passwordController.text);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
